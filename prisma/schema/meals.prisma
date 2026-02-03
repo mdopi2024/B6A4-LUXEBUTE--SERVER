@@ -1,0 +1,19 @@
+model Meal {
+    id String @id @default(uuid())
+    categoryId  String
+    name String @db.VarChar(100)
+    description String @db.Text
+    price Decimal @db.Decimal(10,2)
+    image String? 
+    isAvailable Boolean @default(true)
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+     category Category @relation(fields: [categoryId],references: [id], onDelete: Cascade)
+
+     orders Order[]
+     reviews Review[]
+     cardItem CardItem[]
+
+     @@map("meals")
+}
