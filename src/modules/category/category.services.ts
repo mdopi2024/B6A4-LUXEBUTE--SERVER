@@ -8,7 +8,17 @@ const getAllCategories = async()=>{
    return  prisma.category.findMany()
 }
 
+
+const getAllCategoryById = (id:string)=>{
+   return prisma.category.findUnique({
+    where:{
+        id
+    }
+   })
+}
+
 export const categoryServices = {
     createCategories,
-    getAllCategories
+    getAllCategories,
+    getAllCategoryById
 }
