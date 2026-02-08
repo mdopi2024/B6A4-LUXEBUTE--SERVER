@@ -4,7 +4,7 @@ import { toNodeHandler } from 'better-auth/node';
 import { auth } from './lib/auth';
 import { categoryRouter } from './modules/category/category.route';
 
-const origin = process.env.APP_URL as string || "http://localhost:3000 "
+const origin = process.env.APP_URL as string || "http://localhost:3000"
 export const app =  express()
 
 app.use(express.json())
