@@ -20,7 +20,6 @@ const createCategories = async (req: Request, res: Response) => {
 }
 const getAllCategories = async (req: Request, res: Response) => {
     try {
-        console.log(req.user)
         const data = await categoryServices.getAllCategories()
         res.status(201).json({
             success:true,
