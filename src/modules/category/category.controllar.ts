@@ -51,9 +51,27 @@ const getAllCategoryById = async (req: Request, res: Response) => {
         })
     }
 }
+const updateCategory = async (req: Request, res: Response) => {
+    try {
+        const {id}= req.params
+        const data = await categoryServices.updateCategory(id as string,req.body)
+        res.status(201).json({
+            success:true,
+            message:  "updated category successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:  "Failed to fetch categories",
+            error: err.message
+        })
+    }
+}
 
 export const categoryController = {
     createCategories,
     getAllCategories,
     getAllCategoryById,
+    updateCategory,
 }

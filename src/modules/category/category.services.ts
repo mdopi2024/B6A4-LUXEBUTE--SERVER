@@ -17,8 +17,17 @@ const getAllCategoryById = (id:string)=>{
    })
 }
 
+const updateCategory = async(id:string,data:{categoryName:string, description:string})=>{
+    return  prisma.category.update({
+        where:{
+            id
+        },
+       data
+    })
+}
 export const categoryServices = {
     createCategories,
     getAllCategories,
-    getAllCategoryById
+    getAllCategoryById,
+    updateCategory,
 }
