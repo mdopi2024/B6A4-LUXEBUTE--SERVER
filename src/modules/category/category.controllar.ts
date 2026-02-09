@@ -46,7 +46,7 @@ const getAllCategoryById = async (req: Request, res: Response) => {
     } catch (err: any) {
         res.status(500).json({
             success:false,
-            message:  "Failed to fetch categories",
+            message:  "Failed to fetch category",
             error: err.message
         })
     }
@@ -63,7 +63,24 @@ const updateCategory = async (req: Request, res: Response) => {
     } catch (err: any) {
         res.status(500).json({
             success:false,
-            message:  "Failed to fetch categories",
+            message:  "Failed to update category",
+            error: err.message
+        })
+    }
+}
+const deleteCategory = async (req: Request, res: Response) => {
+    try {
+        const {id}= req.params
+        const data = await categoryServices.deleteCategory(id as string)
+        res.status(201).json({
+            success:true,
+            message:  "Category deleted successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:  "Failed to delete category",
             error: err.message
         })
     }
@@ -74,4 +91,5 @@ export const categoryController = {
     getAllCategories,
     getAllCategoryById,
     updateCategory,
+    deleteCategory
 }

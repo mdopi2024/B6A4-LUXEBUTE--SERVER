@@ -8,5 +8,6 @@ router.post('/category',auth(userRole.ADMIN),categoryController.createCategories
 router.get('/category',auth(userRole.ADMIN),categoryController.getAllCategories)
 router.get('/category/:id',auth(userRole.ADMIN),categoryController.getAllCategoryById)
 router.patch('/category/:id',auth(userRole.ADMIN),categoryController.updateCategory)
+router.delete('/category/:id',auth(userRole.ADMIN),categoryController.deleteCategory)
 
 export const categoryRouter = router
