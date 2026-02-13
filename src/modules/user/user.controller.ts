@@ -51,9 +51,27 @@ const updateUserStatus = async (req: Request, res: Response) => {
         })
     }
 }
+const updateUserRole = async (req: Request, res: Response) => {
+    try {
+        const id=req.params.id
+        const data = await userServices.updateUserRole(id as string,req.body)
+        res.status(201).json({
+            success:true,
+            message:  " User role updated successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:  "Failed to update user role",
+            error: err.message
+        })
+    }
+}
 
 export const userController = {
   getAllUser,
   getUserById,
   updateUserStatus,
+  updateUserRole,
 }

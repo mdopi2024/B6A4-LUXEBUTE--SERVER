@@ -16,9 +16,16 @@ const updateUserStatus = (id:string,data:{status:'ACTIVE' | 'SUSPENDED'})=>{
         data
     })
 }
+const updateUserRole = (id:string,data:{role:'PROVIDER' | 'ADMIN' | 'CUSTOMER'})=>{
+    return prisma.user.update({
+        where:{id},
+        data
+    })
+}
 
 export const userServices = {
     getAllUser,
     getUserById,
-    updateUserStatus
+    updateUserStatus,
+    updateUserRole
 }
