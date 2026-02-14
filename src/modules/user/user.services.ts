@@ -23,9 +23,15 @@ const updateUserRole = (id:string,data:{role:'PROVIDER' | 'ADMIN' | 'CUSTOMER'})
     })
 }
 
+const deleteUser = (id:string)=>{
+    return prisma.user.delete({
+        where:{id}
+    })
+}
 export const userServices = {
     getAllUser,
     getUserById,
     updateUserStatus,
-    updateUserRole
+    updateUserRole,
+    deleteUser
 }

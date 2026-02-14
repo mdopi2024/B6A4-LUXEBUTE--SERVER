@@ -68,10 +68,28 @@ const updateUserRole = async (req: Request, res: Response) => {
         })
     }
 }
+const deleteUser = async (req: Request, res: Response) => {
+    try {
+        const id=req.params.id
+        const data = await userServices.deleteUser(id as string)
+        res.status(201).json({
+            success:true,
+            message:  " User deleted successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:  "Failed to delete user",
+            error: err.message
+        })
+    }
+}
 
 export const userController = {
   getAllUser,
   getUserById,
   updateUserStatus,
   updateUserRole,
+  deleteUser
 }
