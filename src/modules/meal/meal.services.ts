@@ -26,7 +26,31 @@ const getAllMeal = ()=>{
     })
 }
 
+
+const getMealById = (id:string)=>{
+    return  prisma.meal.findUnique({
+        where:{id},
+       include:{
+          category:{
+            select:{
+                categoryName:true
+            }
+          }
+       }
+    })
+}
+
+
+const updateMeal = (id:string,data)=>{
+   return prisma.meal.update({
+    where:{id},
+    data
+   })
+}
+
 export const mealServices ={
     createMeal,
-    getAllMeal
+    getAllMeal,
+    updateMeal,
+    getMealById
 }

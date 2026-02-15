@@ -18,6 +18,7 @@ const createMeal = async (req: Request, res: Response) => {
         })
     }
 }
+
 const getAllMeal = async (req: Request, res: Response) => {
     try {
         const data = await mealServices.getAllMeal()
@@ -35,8 +36,44 @@ const getAllMeal = async (req: Request, res: Response) => {
     }
 }
 
+const getMealById = async (req: Request, res: Response) => {
+    try {
+        const data = await mealServices.getMealById(req.params.id as string)
+        res.status(201).json({
+            success:true,
+            message:  "Menu  retrieved successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message: "Failed to fetch menus",
+            error: err.message
+        })
+    }
+}
+
+const updateMeal = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id
+        const data = await mealServices.updateMeal(id as string,req.body)
+        res.status(201).json({
+            success:true,
+            message:  "Menu updated successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message: "Failed to update menus",
+            error: err.message
+        })
+    }
+}
 
 export const mealController = {
     createMeal,
     getAllMeal,
+    updateMeal,
+    getMealById
 }
