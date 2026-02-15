@@ -4,6 +4,7 @@ import { toNodeHandler } from 'better-auth/node';
 import { auth } from './lib/auth';
 import { categoryRouter } from './modules/category/category.route';
 import { userRoute } from './modules/user/user.route';
+import { mealRoute } from './modules/meal/meal.route';
 
 const origin = process.env.APP_URL as string || "http://localhost:3000"
 export const app =  express()
@@ -25,6 +26,11 @@ app.use('/api',categoryRouter)
 // user
 
 app.use('/api',userRoute)
+
+
+// user
+
+app.use('/api',mealRoute)
 
 app.get('/',(req:Request,res:Response)=>{
   res.send("HELLO WORLD")
