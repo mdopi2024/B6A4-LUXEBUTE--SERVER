@@ -18,8 +18,25 @@ const createMeal = async (req: Request, res: Response) => {
         })
     }
 }
+const getAllMeal = async (req: Request, res: Response) => {
+    try {
+        const data = await mealServices.getAllMeal()
+        res.status(201).json({
+            success:true,
+            message:  "Menu list retrieved successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message: "Failed to fetch menus",
+            error: err.message
+        })
+    }
+}
 
 
 export const mealController = {
     createMeal,
+    getAllMeal,
 }
