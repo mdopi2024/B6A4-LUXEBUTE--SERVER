@@ -55,9 +55,16 @@ const updateMeal = (id:string,data:UpdatedMealType)=>{
    })
 }
 
+const deleteMeal = (id:string)=>{
+    return  prisma.meal.delete({
+        where:{id}
+    })
+}
+
 export const mealServices ={
     createMeal,
     getAllMeal,
     updateMeal,
-    getMealById
+    getMealById,
+    deleteMeal,
 }
