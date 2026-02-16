@@ -8,6 +8,13 @@ interface MealType {
     image:string
     categoryId:string
 }
+interface UpdatedMealType {
+    name:string, 
+    description:string
+    price:string
+    image:string
+    categoryId:string
+}
 
 
 const createMeal = (data:MealType)=>{
@@ -41,7 +48,7 @@ const getMealById = (id:string)=>{
 }
 
 
-const updateMeal = (id:string,data)=>{
+const updateMeal = (id:string,data:UpdatedMealType)=>{
    return prisma.meal.update({
     where:{id},
     data
