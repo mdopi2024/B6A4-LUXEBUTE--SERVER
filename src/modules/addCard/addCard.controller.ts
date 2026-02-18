@@ -13,7 +13,7 @@ const addItemCard = async (req: Request, res: Response) => {
     } catch (err: any) {
         res.status(500).json({
             success:false,
-            message:"Failed to add item to cart",
+            message:err?.message ||"Failed to add item to cart",
             error: err.message
         })
     }

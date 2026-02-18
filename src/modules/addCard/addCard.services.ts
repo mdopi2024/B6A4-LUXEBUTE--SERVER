@@ -6,7 +6,13 @@ export interface CardTypes{
 
 }
 
-const addItemCard = (data:CardTypes)=>{
+const addItemCard =async (data:CardTypes)=>{
+    const isAxist = await prisma.cardItem.findFirst({
+       where:{mealId:data.mealId,userId:data.userId}
+    })
+    if(isAxist){
+        throw new Error("This item already exist in you card")
+    }
   return prisma.cardItem.create({data})
 }
 
