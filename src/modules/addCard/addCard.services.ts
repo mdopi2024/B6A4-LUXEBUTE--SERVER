@@ -16,6 +16,13 @@ const addItemCard =async (data:CardTypes)=>{
   return prisma.cardItem.create({data})
 }
 
+const getAllItemCard = async(id:string)=>{
+    return prisma.cardItem.findMany({
+        where:{userId:id}
+    })
+}
+
 export const addCardServices = {
-    addItemCard
+    addItemCard,
+    getAllItemCard,
 }

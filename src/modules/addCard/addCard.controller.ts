@@ -1,6 +1,7 @@
 import { Request, Response } from "express"
 import { addCardServices } from "./addCard.services"
 
+
 const addItemCard = async (req: Request, res: Response) => {
     try {
         const cardData = req.body
@@ -18,7 +19,27 @@ const addItemCard = async (req: Request, res: Response) => {
         })
     }
 }
+const getAllItemCard= async (req: Request, res: Response) => {
+    try {
+       const id= req.params.id
+        const data = await addCardServices.getAllItemCard(id as string)
+        res.status(201).json({
+            success:true,
+            message:"Cart items retrieved successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:"Failed to retrieve cart items",
+            error: err.message
+        })
+    }
+}
+
+
 
 export const addCardController = {
     addItemCard,
+    getAllItemCard,
 }
