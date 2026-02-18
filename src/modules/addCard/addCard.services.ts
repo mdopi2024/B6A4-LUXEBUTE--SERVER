@@ -18,7 +18,12 @@ const addItemCard =async (data:CardTypes)=>{
 
 const getAllItemCard = async(id:string)=>{
     return prisma.cardItem.findMany({
-        where:{userId:id}
+        where:{userId:id},
+        include:{
+            meal:{
+                include:{category:{select:{categoryName:true}}}
+            }
+        }
     })
 }
 
