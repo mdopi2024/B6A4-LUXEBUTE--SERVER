@@ -36,10 +36,28 @@ const getAllItemCard= async (req: Request, res: Response) => {
         })
     }
 }
+const deleteItemCard= async (req: Request, res: Response) => {
+    try {
+       const id= req.params.id
+        const data = await addCardServices.deleteItemCard(id as string)
+        res.status(201).json({
+            success:true,
+            message:"Cart item deleted successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:"Failed to delete  item",
+            error: err.message
+        })
+    }
+}
 
 
 
 export const addCardController = {
     addItemCard,
     getAllItemCard,
+    deleteItemCard
 }

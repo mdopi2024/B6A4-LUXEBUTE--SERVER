@@ -26,8 +26,15 @@ const getAllItemCard = async(id:string)=>{
         }
     })
 }
+const deleteItemCard = async(id:string)=>{
+    return prisma.cardItem.delete({
+        where:{id},
+       
+    })
+}
 
 export const addCardServices = {
     addItemCard,
     getAllItemCard,
+    deleteItemCard,
 }
