@@ -6,6 +6,7 @@ import { categoryRouter } from './modules/category/category.route';
 import { userRoute } from './modules/user/user.route';
 import { mealRoute } from './modules/meal/meal.route';
 import { addItemRotuer } from './modules/addCard/addCard.route';
+import { orderRouter } from './modules/order/order.routes';
 
 const origin = process.env.APP_URL as string || "http://localhost:3000"
 export const app =  express()
@@ -37,6 +38,10 @@ app.use('/api',mealRoute)
 // user
 
 app.use('/api',addItemRotuer)
+
+// order
+
+app.use('/api',orderRouter)
 
 app.get('/',(req:Request,res:Response)=>{
   res.send("HELLO WORLD")
