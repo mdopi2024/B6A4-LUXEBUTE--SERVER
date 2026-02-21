@@ -26,6 +26,16 @@ const getAllItemCard = async(id:string)=>{
         }
     })
 }
+const geItemCardById = async(id:string)=>{
+    return prisma.cardItem.findUnique({
+        where:{id},
+        include:{
+            meal:{
+                include:{category:{select:{id:true,categoryName:true}}}
+            }
+        }
+    })
+}
 const deleteItemCard = async(id:string)=>{
     return prisma.cardItem.delete({
         where:{id},
@@ -37,4 +47,5 @@ export const addCardServices = {
     addItemCard,
     getAllItemCard,
     deleteItemCard,
+    geItemCardById
 }

@@ -36,6 +36,23 @@ const getAllItemCard= async (req: Request, res: Response) => {
         })
     }
 }
+const getItemCardById= async (req: Request, res: Response) => {
+    try {
+       const id= req.params.id
+        const data = await addCardServices.geItemCardById(id as string)
+        res.status(201).json({
+            success:true,
+            message:"Cart item retrieved successfully",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message:"Failed to retrieve cart item",
+            error: err.message
+        })
+    }
+}
 const deleteItemCard= async (req: Request, res: Response) => {
     try {
        const id= req.params.id
@@ -59,5 +76,6 @@ const deleteItemCard= async (req: Request, res: Response) => {
 export const addCardController = {
     addItemCard,
     getAllItemCard,
-    deleteItemCard
+    deleteItemCard,
+    getItemCardById
 }
