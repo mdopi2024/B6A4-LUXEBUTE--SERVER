@@ -4,6 +4,7 @@ import { orderController } from "./order.controller";
 
 const router = Router();
 router.get('/order/:id',auth(userRole.ADMIN,userRole.CUSTOMER,userRole.PROVIDER),orderController.getOrderById)
+router.patch('/order/:id',auth(userRole.ADMIN,userRole.CUSTOMER,userRole.PROVIDER),orderController.updateOrderStatus)
 router.post('/order',auth(userRole.ADMIN,userRole.CUSTOMER,userRole.PROVIDER),orderController.createOrder)
 
 export const orderRouter = router

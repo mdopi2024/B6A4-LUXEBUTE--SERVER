@@ -1,3 +1,4 @@
+import { OrderStatus } from "../../../prisma/generated/prisma/enums"
 import { prisma } from "../../lib/prisma"
 
 interface OrderTypes {
@@ -13,7 +14,6 @@ const createOrder = (data: OrderTypes) => {
     return prisma.order.create({ data })
 }
 
-
 const getOrderById = (userId: string) => {
     return prisma.order.findMany({
         where: { userId },
@@ -24,8 +24,16 @@ const getOrderById = (userId: string) => {
         }
     })
 }
+const updateOrderStatus = (id: string,data:{status:OrderStatus}) => {
+ 
+    return prisma.order.update({
+        where: { id },
+        data
+    })
+}
 
 export const orderServices = {
     createOrder,
-    getOrderById
+    getOrderById,
+    updateOrderStatus
 }

@@ -33,7 +33,25 @@ const getOrderById = async (req: Request, res: Response) => {
     } catch (err: any) {
         res.status(500).json({
             success:false,
-            message: "Failed to retrived successfully",
+            message: "Failed to retrived orders",
+            error: err.message
+        })
+    }
+}
+const updateOrderStatus = async (req: Request, res: Response) => {
+    try {
+        
+         const id= req.params.id
+        const data = await orderServices.updateOrderStatus( id as string,req.body)
+        res.status(201).json({
+            success:true,
+            message: "Order updated successfully.",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message: "Failed to update order",
             error: err.message
         })
     }
@@ -41,5 +59,6 @@ const getOrderById = async (req: Request, res: Response) => {
 
 export const orderController = {
     createOrder,
-    getOrderById
+    getOrderById,
+    updateOrderStatus,
 }
