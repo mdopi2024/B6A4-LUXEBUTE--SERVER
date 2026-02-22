@@ -45,7 +45,7 @@ const updateOrderStatus = async (req: Request, res: Response) => {
         const data = await orderServices.updateOrderStatus( id as string,req.body)
         res.status(201).json({
             success:true,
-            message: "Order updated successfully.",
+            message: "Order updated  successfully.",
             data
         })
     } catch (err: any) {
