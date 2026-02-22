@@ -20,7 +20,26 @@ const createOrder = async (req: Request, res: Response) => {
         })
     }
 }
+const getOrderById = async (req: Request, res: Response) => {
+    try {
+        
+         const id= req.params.id
+        const data = await orderServices.getOrderById( id as string)
+        res.status(201).json({
+            success:true,
+            message: "Your order retrived successfully .",
+            data
+        })
+    } catch (err: any) {
+        res.status(500).json({
+            success:false,
+            message: "Failed to retrived successfully",
+            error: err.message
+        })
+    }
+}
 
 export const orderController = {
-    createOrder
+    createOrder,
+    getOrderById
 }
