@@ -20,8 +20,27 @@ const createComment = async (req: Request, res: Response) => {
         })
     }
 }
+const getReviewByMealId = async (req: Request, res: Response) => {
+    try {
+        const id = req.params.id
+        const data = await commentServices.getReviewByMealId(id as string)
+        res.status(201).json({
+            success:true,
+            message: "Review retrived successfully",
+            data
+        })
+    } catch (err: any) {
+      
+        res.status(500).json({
+            success:false,
+            message: "Review retrived failed",
+            error: err.message
+        })
+    }
+}
 
 
 export const commentController = {
     createComment,
+    getReviewByMealId,
 }
