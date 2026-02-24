@@ -31,9 +31,19 @@ const updateOrderStatus = (id: string,data:{status:OrderStatus}) => {
         data
     })
 }
+const getAllOrders = ()=>{
+     return prisma.order.findMany({
+        include:{
+            meal:{
+                include:{category:true}
+            }
+        }
+    })
+}
 
 export const orderServices = {
     createOrder,
     getOrderById,
-    updateOrderStatus
+    updateOrderStatus,
+    getAllOrders
 }
