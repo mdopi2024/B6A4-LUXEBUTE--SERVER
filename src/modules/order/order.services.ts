@@ -14,6 +14,11 @@ const createOrder = (data: OrderTypes) => {
     return prisma.order.create({ data })
 }
 
+const getSingleOrder = (id: string) => {
+    return prisma.order.findUnique({
+        where: { id }
+    })
+}
 const getOrderById = (userId: string) => {
     return prisma.order.findMany({
         where: { userId },
@@ -36,6 +41,9 @@ const getAllOrders = ()=>{
         include:{
             meal:{
                 include:{category:true}
+            },
+            user:{
+                select:{email:true,name:true}
             }
         }
     })
@@ -45,5 +53,6 @@ export const orderServices = {
     createOrder,
     getOrderById,
     updateOrderStatus,
-    getAllOrders
+    getAllOrders,
+    getSingleOrder
 }
