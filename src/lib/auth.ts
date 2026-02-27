@@ -8,7 +8,7 @@ export const auth = betterAuth({
     database: prismaAdapter(prisma, {
         provider: "postgresql",
     }),
-    trustedOrigins: [process.env.APP_URL!],
+    trustedOrigins: [process.env.APP_URL!, "https://b6-a4-frontend-client.vercel.app"!],
     emailAndPassword: {
         enabled: true,
     },

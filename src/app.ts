@@ -10,12 +10,13 @@ import { orderRouter } from './modules/order/order.routes';
 import { commentRoutes } from './modules/comments/comment.routes';
 
 const origin = process.env.APP_URL as string || "http://localhost:3000"
+
 export const app =  express()
 
 app.use(express.json())
 
 app.use(cors({
-    origin:[origin],
+    origin:[origin,"https://b6-a4-frontend-client.vercel.app"],
     credentials:true
 }))
 
