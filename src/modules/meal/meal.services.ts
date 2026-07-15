@@ -29,7 +29,7 @@ const getAllMeal = async (params: GetAllMealParams) => {
     const {
         search,
         page = 1,
-        limit = 2,
+        limit = 10,
         categoryId,
         isAvailable,
         sortBy = "createdAt",
