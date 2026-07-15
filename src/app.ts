@@ -8,7 +8,6 @@ import { mealRoute } from './modules/meal/meal.route';
 import { addItemRotuer } from './modules/addCard/addCard.route';
 import { orderRouter } from './modules/order/order.routes';
 import { commentRoutes } from './modules/comments/comment.routes';
-import { boolean, roblox } from 'better-auth';
 
 const origin = process.env.APP_URL as string || "http://localhost:3000"
 
@@ -26,7 +25,7 @@ const allowedOrigins = [
    process.env.PROD_API_URL || "https://b6-a4-frontend-client.vercel.app",
    "http://localhost:4000",
    "http://localhost:6000"
-].filter(boolean)
+].filter(Boolean)
 
 app.use(cors({
   origin: (origin, callback) => {

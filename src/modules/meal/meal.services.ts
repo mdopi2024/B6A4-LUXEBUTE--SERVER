@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma"
-
+import { Prisma } from "@prisma/client";
+import { GetAllMealParams } from "./meal.controller";
 
 interface MealType {
     name:string, 
@@ -17,21 +18,78 @@ interface UpdatedMealType {
 }
 
 
+
+
 const createMeal = (data:MealType)=>{
    return prisma.meal.create({data})
 }
 
-const getAllMeal = ()=>{
-    return  prisma.meal.findMany({
-       include:{
-          category:{
-            select:{
-                categoryName:true
-            }
-          }
-       }
-    })
-}
+
+const getAllMeal = async (params: GetAllMealParams) => {
+    const {
+        search,
+        page = 1,
+        limit = 2,
+        categoryId,
+        isAvailable,
+        sortBy = "createdAt",
+        sortOrder = "desc",
+    } = params;
+
+    const skip = (page - 1) * limit;
+
+    // Build dynamic where clause
+    const andConditions: Prisma.MealWhereInput[] = [];
+
+    if (search) {
+        andConditions.push({
+            OR: [
+                { name: { contains: search, mode: "insensitive" } },
+                { description: { contains: search, mode: "insensitive" } },
+                { category: { categoryName: { contains: search, mode: "insensitive" } } },
+            ],
+        });
+    }
+
+    if (categoryId) {
+        andConditions.push({ categoryId });
+    }
+
+    if (isAvailable !== undefined) {
+        andConditions.push({ isAvailable });
+    }
+
+    const whereConditions: Prisma.MealWhereInput =
+        andConditions.length > 0 ? { AND: andConditions } : {};
+
+    // Run count + data queries in parallel
+    const [data, total] = await Promise.all([
+        prisma.meal.findMany({
+            where: whereConditions,
+            skip,
+            take: limit,
+            orderBy: { [sortBy]: sortOrder },
+            include: {
+                category: {
+                    select: {
+                        categoryName: true,
+                    },
+                },
+            },
+        }),
+        prisma.meal.count({ where: whereConditions }),
+    ]);
+
+    return {
+        meta: {
+            page,
+            limit,
+            total,
+            totalPages: Math.ceil(total / limit),
+        },
+        data,
+    };
+};
 
 
 const getMealById = (id:string)=>{
