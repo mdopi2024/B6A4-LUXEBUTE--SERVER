@@ -7,6 +7,9 @@
     "start": "node  ./dist/server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "npx tsx watch src/server.ts",
+    "stripe:webhook": "stripe listen --forward-to localhost:5000/webhook",
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
     "build": "prisma generate && tsup src/index.ts --format esm --platform node --target node20 --outDir api --external pg-native",
     "postinstall": "prisma generate"
   },
@@ -27,10 +30,15 @@
   "dependencies": {
     "@prisma/adapter-pg": "^7.3.0",
     "@prisma/client": "^7.3.0",
+    "@stripe/stripe-js": "^9.10.0",
     "better-auth": "^1.4.17",
     "cors": "^2.8.6",
     "dotenv": "^17.2.3",
+    "env": "^0.0.2",
     "express": "^5.2.1",
-    "pg": "^8.17.2"
+    "http-status": "^2.1.0",
+    "pg": "^8.17.2",
+    "stripe": "^22.3.1",
+    "uuid": "^14.0.1"
   }
 }

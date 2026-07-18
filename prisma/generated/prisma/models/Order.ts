@@ -42,6 +42,7 @@ export type OrderMinAggregateOutputType = {
   mealId: string | null
   delevaryAddress: string | null
   paymentMethod: string | null
+  paymentStatus: $Enums.PaymentStatus | null
   quantity: number | null
   totalAmount: runtime.Decimal | null
   status: $Enums.OrderStatus | null
@@ -55,6 +56,7 @@ export type OrderMaxAggregateOutputType = {
   mealId: string | null
   delevaryAddress: string | null
   paymentMethod: string | null
+  paymentStatus: $Enums.PaymentStatus | null
   quantity: number | null
   totalAmount: runtime.Decimal | null
   status: $Enums.OrderStatus | null
@@ -68,6 +70,7 @@ export type OrderCountAggregateOutputType = {
   mealId: number
   delevaryAddress: number
   paymentMethod: number
+  paymentStatus: number
   quantity: number
   totalAmount: number
   status: number
@@ -93,6 +96,7 @@ export type OrderMinAggregateInputType = {
   mealId?: true
   delevaryAddress?: true
   paymentMethod?: true
+  paymentStatus?: true
   quantity?: true
   totalAmount?: true
   status?: true
@@ -106,6 +110,7 @@ export type OrderMaxAggregateInputType = {
   mealId?: true
   delevaryAddress?: true
   paymentMethod?: true
+  paymentStatus?: true
   quantity?: true
   totalAmount?: true
   status?: true
@@ -119,6 +124,7 @@ export type OrderCountAggregateInputType = {
   mealId?: true
   delevaryAddress?: true
   paymentMethod?: true
+  paymentStatus?: true
   quantity?: true
   totalAmount?: true
   status?: true
@@ -219,6 +225,7 @@ export type OrderGroupByOutputType = {
   mealId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal
   status: $Enums.OrderStatus
@@ -255,6 +262,7 @@ export type OrderWhereInput = {
   mealId?: Prisma.StringFilter<"Order"> | string
   delevaryAddress?: Prisma.StringFilter<"Order"> | string
   paymentMethod?: Prisma.StringFilter<"Order"> | string
+  paymentStatus?: Prisma.EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
   quantity?: Prisma.IntFilter<"Order"> | number
   totalAmount?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
@@ -262,6 +270,7 @@ export type OrderWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   meal?: Prisma.XOR<Prisma.MealScalarRelationFilter, Prisma.MealWhereInput>
+  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
 }
 
 export type OrderOrderByWithRelationInput = {
@@ -270,6 +279,7 @@ export type OrderOrderByWithRelationInput = {
   mealId?: Prisma.SortOrder
   delevaryAddress?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -277,6 +287,7 @@ export type OrderOrderByWithRelationInput = {
   updatedAt?: Prisma.SortOrder
   user?: Prisma.UserOrderByWithRelationInput
   meal?: Prisma.MealOrderByWithRelationInput
+  payment?: Prisma.PaymentOrderByWithRelationInput
 }
 
 export type OrderWhereUniqueInput = Prisma.AtLeast<{
@@ -288,6 +299,7 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   mealId?: Prisma.StringFilter<"Order"> | string
   delevaryAddress?: Prisma.StringFilter<"Order"> | string
   paymentMethod?: Prisma.StringFilter<"Order"> | string
+  paymentStatus?: Prisma.EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
   quantity?: Prisma.IntFilter<"Order"> | number
   totalAmount?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
@@ -295,6 +307,7 @@ export type OrderWhereUniqueInput = Prisma.AtLeast<{
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
   user?: Prisma.XOR<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput>
   meal?: Prisma.XOR<Prisma.MealScalarRelationFilter, Prisma.MealWhereInput>
+  payment?: Prisma.XOR<Prisma.PaymentNullableScalarRelationFilter, Prisma.PaymentWhereInput> | null
 }, "id">
 
 export type OrderOrderByWithAggregationInput = {
@@ -303,6 +316,7 @@ export type OrderOrderByWithAggregationInput = {
   mealId?: Prisma.SortOrder
   delevaryAddress?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -324,6 +338,7 @@ export type OrderScalarWhereWithAggregatesInput = {
   mealId?: Prisma.StringWithAggregatesFilter<"Order"> | string
   delevaryAddress?: Prisma.StringWithAggregatesFilter<"Order"> | string
   paymentMethod?: Prisma.StringWithAggregatesFilter<"Order"> | string
+  paymentStatus?: Prisma.EnumPaymentStatusWithAggregatesFilter<"Order"> | $Enums.PaymentStatus
   quantity?: Prisma.IntWithAggregatesFilter<"Order"> | number
   totalAmount?: Prisma.DecimalWithAggregatesFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusWithAggregatesFilter<"Order"> | $Enums.OrderStatus
@@ -335,6 +350,7 @@ export type OrderCreateInput = {
   id?: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
@@ -342,6 +358,7 @@ export type OrderCreateInput = {
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutOrdersInput
   meal: Prisma.MealCreateNestedOneWithoutOrdersInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutOrderInput
 }
 
 export type OrderUncheckedCreateInput = {
@@ -350,17 +367,20 @@ export type OrderUncheckedCreateInput = {
   mealId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutOrderInput
 }
 
 export type OrderUpdateInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -368,6 +388,7 @@ export type OrderUpdateInput = {
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
   meal?: Prisma.MealUpdateOneRequiredWithoutOrdersNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateInput = {
@@ -376,11 +397,13 @@ export type OrderUncheckedUpdateInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutOrderNestedInput
 }
 
 export type OrderCreateManyInput = {
@@ -389,6 +412,7 @@ export type OrderCreateManyInput = {
   mealId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
@@ -400,6 +424,7 @@ export type OrderUpdateManyMutationInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -413,6 +438,7 @@ export type OrderUncheckedUpdateManyInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -436,6 +462,7 @@ export type OrderCountOrderByAggregateInput = {
   mealId?: Prisma.SortOrder
   delevaryAddress?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -454,6 +481,7 @@ export type OrderMaxOrderByAggregateInput = {
   mealId?: Prisma.SortOrder
   delevaryAddress?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -467,6 +495,7 @@ export type OrderMinOrderByAggregateInput = {
   mealId?: Prisma.SortOrder
   delevaryAddress?: Prisma.SortOrder
   paymentMethod?: Prisma.SortOrder
+  paymentStatus?: Prisma.SortOrder
   quantity?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
   status?: Prisma.SortOrder
@@ -477,6 +506,11 @@ export type OrderMinOrderByAggregateInput = {
 export type OrderSumOrderByAggregateInput = {
   quantity?: Prisma.SortOrder
   totalAmount?: Prisma.SortOrder
+}
+
+export type OrderScalarRelationFilter = {
+  is?: Prisma.OrderWhereInput
+  isNot?: Prisma.OrderWhereInput
 }
 
 export type OrderCreateNestedManyWithoutMealInput = {
@@ -521,6 +555,10 @@ export type OrderUncheckedUpdateManyWithoutMealNestedInput = {
   deleteMany?: Prisma.OrderScalarWhereInput | Prisma.OrderScalarWhereInput[]
 }
 
+export type EnumPaymentStatusFieldUpdateOperationsInput = {
+  set?: $Enums.PaymentStatus
+}
+
 export type IntFieldUpdateOperationsInput = {
   set?: number
   increment?: number
@@ -531,6 +569,20 @@ export type IntFieldUpdateOperationsInput = {
 
 export type EnumOrderStatusFieldUpdateOperationsInput = {
   set?: $Enums.OrderStatus
+}
+
+export type OrderCreateNestedOneWithoutPaymentInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentInput, Prisma.OrderUncheckedCreateWithoutPaymentInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentInput
+  connect?: Prisma.OrderWhereUniqueInput
+}
+
+export type OrderUpdateOneRequiredWithoutPaymentNestedInput = {
+  create?: Prisma.XOR<Prisma.OrderCreateWithoutPaymentInput, Prisma.OrderUncheckedCreateWithoutPaymentInput>
+  connectOrCreate?: Prisma.OrderCreateOrConnectWithoutPaymentInput
+  upsert?: Prisma.OrderUpsertWithoutPaymentInput
+  connect?: Prisma.OrderWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.OrderUpdateToOneWithWhereWithoutPaymentInput, Prisma.OrderUpdateWithoutPaymentInput>, Prisma.OrderUncheckedUpdateWithoutPaymentInput>
 }
 
 export type OrderCreateNestedManyWithoutUserInput = {
@@ -579,12 +631,14 @@ export type OrderCreateWithoutMealInput = {
   id?: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutMealInput = {
@@ -592,11 +646,13 @@ export type OrderUncheckedCreateWithoutMealInput = {
   userId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutMealInput = {
@@ -634,6 +690,7 @@ export type OrderScalarWhereInput = {
   mealId?: Prisma.StringFilter<"Order"> | string
   delevaryAddress?: Prisma.StringFilter<"Order"> | string
   paymentMethod?: Prisma.StringFilter<"Order"> | string
+  paymentStatus?: Prisma.EnumPaymentStatusFilter<"Order"> | $Enums.PaymentStatus
   quantity?: Prisma.IntFilter<"Order"> | number
   totalAmount?: Prisma.DecimalFilter<"Order"> | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFilter<"Order"> | $Enums.OrderStatus
@@ -641,16 +698,90 @@ export type OrderScalarWhereInput = {
   updatedAt?: Prisma.DateTimeFilter<"Order"> | Date | string
 }
 
+export type OrderCreateWithoutPaymentInput = {
+  id?: string
+  delevaryAddress: string
+  paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
+  quantity: number
+  totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.OrderStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  user: Prisma.UserCreateNestedOneWithoutOrdersInput
+  meal: Prisma.MealCreateNestedOneWithoutOrdersInput
+}
+
+export type OrderUncheckedCreateWithoutPaymentInput = {
+  id?: string
+  userId: string
+  mealId: string
+  delevaryAddress: string
+  paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
+  quantity: number
+  totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: $Enums.OrderStatus
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type OrderCreateOrConnectWithoutPaymentInput = {
+  where: Prisma.OrderWhereUniqueInput
+  create: Prisma.XOR<Prisma.OrderCreateWithoutPaymentInput, Prisma.OrderUncheckedCreateWithoutPaymentInput>
+}
+
+export type OrderUpsertWithoutPaymentInput = {
+  update: Prisma.XOR<Prisma.OrderUpdateWithoutPaymentInput, Prisma.OrderUncheckedUpdateWithoutPaymentInput>
+  create: Prisma.XOR<Prisma.OrderCreateWithoutPaymentInput, Prisma.OrderUncheckedCreateWithoutPaymentInput>
+  where?: Prisma.OrderWhereInput
+}
+
+export type OrderUpdateToOneWithWhereWithoutPaymentInput = {
+  where?: Prisma.OrderWhereInput
+  data: Prisma.XOR<Prisma.OrderUpdateWithoutPaymentInput, Prisma.OrderUncheckedUpdateWithoutPaymentInput>
+}
+
+export type OrderUpdateWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  meal?: Prisma.MealUpdateOneRequiredWithoutOrdersNestedInput
+}
+
+export type OrderUncheckedUpdateWithoutPaymentInput = {
+  id?: Prisma.StringFieldUpdateOperationsInput | string
+  userId?: Prisma.StringFieldUpdateOperationsInput | string
+  mealId?: Prisma.StringFieldUpdateOperationsInput | string
+  delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
+  quantity?: Prisma.IntFieldUpdateOperationsInput | number
+  totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
+  status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type OrderCreateWithoutUserInput = {
   id?: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
   meal: Prisma.MealCreateNestedOneWithoutOrdersInput
+  payment?: Prisma.PaymentCreateNestedOneWithoutOrderInput
 }
 
 export type OrderUncheckedCreateWithoutUserInput = {
@@ -658,11 +789,13 @@ export type OrderUncheckedCreateWithoutUserInput = {
   mealId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
   createdAt?: Date | string
   updatedAt?: Date | string
+  payment?: Prisma.PaymentUncheckedCreateNestedOneWithoutOrderInput
 }
 
 export type OrderCreateOrConnectWithoutUserInput = {
@@ -696,6 +829,7 @@ export type OrderCreateManyMealInput = {
   userId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
@@ -707,12 +841,14 @@ export type OrderUpdateWithoutMealInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   user?: Prisma.UserUpdateOneRequiredWithoutOrdersNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutMealInput = {
@@ -720,11 +856,13 @@ export type OrderUncheckedUpdateWithoutMealInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutMealInput = {
@@ -732,6 +870,7 @@ export type OrderUncheckedUpdateManyWithoutMealInput = {
   userId?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -744,6 +883,7 @@ export type OrderCreateManyUserInput = {
   mealId: string
   delevaryAddress: string
   paymentMethod: string
+  paymentStatus?: $Enums.PaymentStatus
   quantity: number
   totalAmount: runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: $Enums.OrderStatus
@@ -755,12 +895,14 @@ export type OrderUpdateWithoutUserInput = {
   id?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   meal?: Prisma.MealUpdateOneRequiredWithoutOrdersNestedInput
+  payment?: Prisma.PaymentUpdateOneWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateWithoutUserInput = {
@@ -768,11 +910,13 @@ export type OrderUncheckedUpdateWithoutUserInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  payment?: Prisma.PaymentUncheckedUpdateOneWithoutOrderNestedInput
 }
 
 export type OrderUncheckedUpdateManyWithoutUserInput = {
@@ -780,6 +924,7 @@ export type OrderUncheckedUpdateManyWithoutUserInput = {
   mealId?: Prisma.StringFieldUpdateOperationsInput | string
   delevaryAddress?: Prisma.StringFieldUpdateOperationsInput | string
   paymentMethod?: Prisma.StringFieldUpdateOperationsInput | string
+  paymentStatus?: Prisma.EnumPaymentStatusFieldUpdateOperationsInput | $Enums.PaymentStatus
   quantity?: Prisma.IntFieldUpdateOperationsInput | number
   totalAmount?: Prisma.DecimalFieldUpdateOperationsInput | runtime.Decimal | runtime.DecimalJsLike | number | string
   status?: Prisma.EnumOrderStatusFieldUpdateOperationsInput | $Enums.OrderStatus
@@ -795,6 +940,7 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   mealId?: boolean
   delevaryAddress?: boolean
   paymentMethod?: boolean
+  paymentStatus?: boolean
   quantity?: boolean
   totalAmount?: boolean
   status?: boolean
@@ -802,6 +948,7 @@ export type OrderSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = 
   updatedAt?: boolean
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meal?: boolean | Prisma.MealDefaultArgs<ExtArgs>
+  payment?: boolean | Prisma.Order$paymentArgs<ExtArgs>
 }, ExtArgs["result"]["order"]>
 
 export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -810,6 +957,7 @@ export type OrderSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   mealId?: boolean
   delevaryAddress?: boolean
   paymentMethod?: boolean
+  paymentStatus?: boolean
   quantity?: boolean
   totalAmount?: boolean
   status?: boolean
@@ -825,6 +973,7 @@ export type OrderSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
   mealId?: boolean
   delevaryAddress?: boolean
   paymentMethod?: boolean
+  paymentStatus?: boolean
   quantity?: boolean
   totalAmount?: boolean
   status?: boolean
@@ -840,6 +989,7 @@ export type OrderSelectScalar = {
   mealId?: boolean
   delevaryAddress?: boolean
   paymentMethod?: boolean
+  paymentStatus?: boolean
   quantity?: boolean
   totalAmount?: boolean
   status?: boolean
@@ -847,10 +997,11 @@ export type OrderSelectScalar = {
   updatedAt?: boolean
 }
 
-export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "mealId" | "delevaryAddress" | "paymentMethod" | "quantity" | "totalAmount" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
+export type OrderOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "userId" | "mealId" | "delevaryAddress" | "paymentMethod" | "paymentStatus" | "quantity" | "totalAmount" | "status" | "createdAt" | "updatedAt", ExtArgs["result"]["order"]>
 export type OrderInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
   meal?: boolean | Prisma.MealDefaultArgs<ExtArgs>
+  payment?: boolean | Prisma.Order$paymentArgs<ExtArgs>
 }
 export type OrderIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   user?: boolean | Prisma.UserDefaultArgs<ExtArgs>
@@ -866,6 +1017,7 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   objects: {
     user: Prisma.$UserPayload<ExtArgs>
     meal: Prisma.$MealPayload<ExtArgs>
+    payment: Prisma.$PaymentPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: string
@@ -873,6 +1025,7 @@ export type $OrderPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs 
     mealId: string
     delevaryAddress: string
     paymentMethod: string
+    paymentStatus: $Enums.PaymentStatus
     quantity: number
     totalAmount: runtime.Decimal
     status: $Enums.OrderStatus
@@ -1274,6 +1427,7 @@ export interface Prisma__OrderClient<T, Null = never, ExtArgs extends runtime.Ty
   readonly [Symbol.toStringTag]: "PrismaPromise"
   user<T extends Prisma.UserDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.UserDefaultArgs<ExtArgs>>): Prisma.Prisma__UserClient<runtime.Types.Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   meal<T extends Prisma.MealDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.MealDefaultArgs<ExtArgs>>): Prisma.Prisma__MealClient<runtime.Types.Result.GetResult<Prisma.$MealPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  payment<T extends Prisma.Order$paymentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Order$paymentArgs<ExtArgs>>): Prisma.Prisma__PaymentClient<runtime.Types.Result.GetResult<Prisma.$PaymentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1308,6 +1462,7 @@ export interface OrderFieldRefs {
   readonly mealId: Prisma.FieldRef<"Order", 'String'>
   readonly delevaryAddress: Prisma.FieldRef<"Order", 'String'>
   readonly paymentMethod: Prisma.FieldRef<"Order", 'String'>
+  readonly paymentStatus: Prisma.FieldRef<"Order", 'PaymentStatus'>
   readonly quantity: Prisma.FieldRef<"Order", 'Int'>
   readonly totalAmount: Prisma.FieldRef<"Order", 'Decimal'>
   readonly status: Prisma.FieldRef<"Order", 'OrderStatus'>
@@ -1706,6 +1861,25 @@ export type OrderDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Interna
    * Limit how many Orders to delete.
    */
   limit?: number
+}
+
+/**
+ * Order.payment
+ */
+export type Order$paymentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Payment
+   */
+  select?: Prisma.PaymentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Payment
+   */
+  omit?: Prisma.PaymentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PaymentInclude<ExtArgs> | null
+  where?: Prisma.PaymentWhereInput
 }
 
 /**

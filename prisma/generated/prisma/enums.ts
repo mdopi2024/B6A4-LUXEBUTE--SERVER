@@ -10,13 +10,21 @@
 */
 
 export const OrderStatus = {
-  DELIVERED: 'DELIVERED',
+  PREPARING: 'PREPARING',
   READY: 'READY',
-  CANCELLED: 'CANCELLED',
-  PREPARING: 'PREPARING'
+  DELIVERED: 'DELIVERED',
+  CANCELLED: 'CANCELLED'
 } as const
 
 export type OrderStatus = (typeof OrderStatus)[keyof typeof OrderStatus]
+
+
+export const PaymentStatus = {
+  PAID: 'PAID',
+  UNPAID: 'UNPAID'
+} as const
+
+export type PaymentStatus = (typeof PaymentStatus)[keyof typeof PaymentStatus]
 
 
 export const UserRole = {

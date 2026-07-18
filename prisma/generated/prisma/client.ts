@@ -60,6 +60,11 @@ export type Meal = Prisma.MealModel
  */
 export type Order = Prisma.OrderModel
 /**
+ * Model Payment
+ * 
+ */
+export type Payment = Prisma.PaymentModel
+/**
  * Model ProviderProfile
  * 
  */
