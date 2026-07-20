@@ -1,7 +1,9 @@
+
 import { app } from "./app";
+import { loadEnv } from "./env";
 import { prisma } from "./lib/prisma"
 
-const post = process.env.PORT || 5000
+const post = loadEnv.PORT
 const main = async()=>{
    try{
      await prisma.$connect();

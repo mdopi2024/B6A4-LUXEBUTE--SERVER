@@ -11,7 +11,9 @@ import { commentRoutes } from './modules/comments/comment.routes';
 import { PaymentController } from './modules/payment/payment.controller';
 import { loadEnv } from './env';
 
-const origin = loadEnv.APP_URL as string || "http://localhost:3000" || "http://localhost:5000"
+const env  = loadEnv
+
+const origin = env.APP_URL as string || "http://localhost:3000" || "http://localhost:5000"
 
 export const app = express()
 
@@ -22,8 +24,8 @@ app.post(
   express.raw({ type: "application/json" }),PaymentController.handleStripeWebhookEvent);
 
 const allowedOrigins = [
-  process.env.APP_URL || "http://localhost:3000",
-  process.env.PROD_API_URL || "https://b6-a4-frontend-client.vercel.app",
+  env.APP_URL || "http://localhost:3000",
+  env.PROD_API_URL || "https://b6-a4-frontend-client.vercel.app",
   "http://localhost:4000",
   "http://localhost:6000"
 ].filter(Boolean)
