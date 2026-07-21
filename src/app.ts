@@ -17,11 +17,12 @@ const origin = env.APP_URL as string || "http://localhost:3000" || "http://local
 
 export const app = express()
 
-app.use(express.json())
 
-app.post(
-  "/webhook",
-  express.raw({ type: "application/json" }),PaymentController.handleStripeWebhookEvent);
+
+app.post( "/webhook",express.raw({ type: "application/json" }),PaymentController.handleStripeWebhookEvent);
+
+
+  app.use(express.json())
 
 const allowedOrigins = [
   env.APP_URL || "http://localhost:3000",
