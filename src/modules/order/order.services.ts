@@ -107,7 +107,7 @@ const createOrder = async (data: OrderTypes) => {
         paymentId: payment.id,
         transactionId: payment.transactionId ?? "",
       },
-      success_url: `${envVar.APP_URL}/payment/success}`,
+      success_url: `${envVar.APP_URL}/payment/success`,
       cancel_url: `${envVar.APP_URL}/payment/cancel`,
     });
 
